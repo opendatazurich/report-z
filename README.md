@@ -40,5 +40,5 @@ python pdf_to_db.py
 
 # TODO
 
-- [] WordCloud implementieren
-- [] Suche über alle PDFs implementieren
+- [ ] WordCloud implementieren
+- [ ] Suche über alle PDFs implementieren
