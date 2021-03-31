@@ -18,21 +18,21 @@ __location__ = os.path.realpath(
 )
 
 
-def load_csv(csv_str):
+def load_data_in_db(csv_str, c):
     dr = csv.DictReader(StringIO(csv_str), delimiter=',')
     columns = dr.fieldnames
     columns.append('report_text')
-    to_db = []
+    query = insert_db_query(columns)
+
     for r in dr:
-        print(r)
+        print(f"Import {r}")
         # download PDF and extract text
         r['report_text'] = rc.download_pdf(r['download_url'])
-        print(r['report_text'])
         db_row = []
         for col in columns:
             db_row.append(r[col])
-        to_db.append(db_row)
-    return columns, to_db
+        # insert into db
+        c.execute(query, db_row)
 
 
 def insert_db_query(columns):
@@ -43,16 +43,9 @@ def insert_db_query(columns):
     query += ');'
     return query
 
-# load CSV of all annual reports of the City of Zurich
-csv_str = rc.download('https://data.stadt-zuerich.ch/dataset/sar_geschaeftsberichte/download/sar_geschaeftsberichte.csv')
 
 conn = None
 try:
-    # load the csv to sqlite db
-    columns, to_db = load_csv(csv_str)
-    
-    sys.exit(1)
-
     # create db
     DATABASE_NAME = os.path.join(__location__, 'data.sqlite')
     conn = sqlite3.connect(DATABASE_NAME)
@@ -71,10 +64,12 @@ try:
         )
         '''
     )
-    
-    # insert into db
-    query = insert_db_query(columns)
-    c.executemany(query, to_db)
+
+    # load CSV of all annual reports of the City of Zurich
+    csv_str = rc.download('https://data.stadt-zuerich.ch/dataset/sar_geschaeftsberichte/download/sar_geschaeftsberichte.csv')
+    # load the csv to sqlite db
+    load_data_in_db(csv_str, c)
+
     conn.commit()
 except Exception as e:
     print("Error: %s" % e, file=sys.stderr)
