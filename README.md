@@ -1,9 +1,9 @@
 Report-Z
 ========
 
-Dieses Projekt analysiert die Geschäftsberichte der Stadt Zürich.
+Dieses Projekt analysiert die [Geschäftsberichte der Stadt Zürich](https://stadt-zuerich.ch/geschaeftsbericht).
 
-Die Daten stammen vom Stadtarchiv via Opendata Zürich.
+Die Daten stammen vom [Stadtarchiv via Opendata Zürich](https://data.stadt-zuerich.ch/dataset/sar_geschaeftsberichte).
 
 # Installation
 
