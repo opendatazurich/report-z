@@ -1,1 +1,9 @@
 requests
+pandas
+matplotlib
+nltk
+stop-words
+wordcloud
+HanTa
+tqdm
+git+https://github.com/StatistikStadtZuerich/ssz-palette.git#egg=sszpalette
