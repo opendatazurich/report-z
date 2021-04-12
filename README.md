@@ -36,6 +36,8 @@ python pdf_to_db.py
 
 ## WordCloud erstellen
 
+Ist im Jupyte Notebook [`WordCloud.ipynb`](https://github.com/metaodi/report-z/blob/master/WordCloud.ipynb) implementiert.
+
 ## Suche in den PDFs
 
 # TODO
