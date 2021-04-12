@@ -1,2 +1,4 @@
 /data.sqlite
 /__pycache__
+report_processed.pkl
+/.ipynb_checkpoints
